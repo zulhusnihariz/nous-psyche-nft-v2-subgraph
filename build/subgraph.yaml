@@ -1,0 +1,60 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: NousPsycheNFTV2
+    network: mumbai
+    source:
+      address: "0xfDc802315043a3e957b5c3843BF158DB34Db097d"
+      abi: NousPsycheNFTV2
+      startBlock: 42389912
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - Equipped
+        - Paused
+        - PerkAdded
+        - PerkSaleToggled
+        - PerkUpdated
+        - Purchased
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+        - Transfer
+        - Unpaused
+      abis:
+        - name: NousPsycheNFTV2
+          file: NousPsycheNFTV2/abis/NousPsycheNFTV2.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: Equipped(indexed uint256,indexed uint256,string)
+          handler: handleEquipped
+        - event: Paused(address)
+          handler: handlePaused
+        - event: PerkAdded(indexed uint256)
+          handler: handlePerkAdded
+        - event: PerkSaleToggled(indexed uint256,bool,bool)
+          handler: handlePerkSaleToggled
+        - event: PerkUpdated(indexed uint256)
+          handler: handlePerkUpdated
+        - event: Purchased(address,indexed uint256,indexed uint256,string)
+          handler: handlePurchased
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: Unpaused(address)
+          handler: handleUnpaused
+      file: NousPsycheNFTV2/NousPsycheNFTV2.wasm
